@@ -1,9 +1,14 @@
-using FastEndpoints.Swagger;
+﻿using FastEndpoints.Swagger;
 using FastEndpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
+// ❌ ANTES (Para REST API):
+//builder.Services.AddAWSLambdaHosting(LambdaEventSource.RestApi);
+
+//  AGORA (Para HTTP API):
+builder.Services.AddAWSLambdaHosting(LambdaEventSource.HttpApi);
+
 builder.Services.AddControllers();
 builder.Services.AddFastEndpoints();
 builder.Services.SwaggerDocument();

@@ -10,7 +10,7 @@ Globals:
 
 Resources:
     MeuApiGatewayCentral:
-        Type: AWS::Serverless::HttpApi
+        Type: AWS::Serverless::Api
         Properties:
           StageName: Prod
 
@@ -24,10 +24,16 @@ Resources:
             Timeout: 30
             Events:
                 ApiEvent:
-                    Type: HttpApi
+                    Type: Api
                     Properties:
-                        ApiId: !Ref MeuApiGatewayCentral
+                        RestApiId: !Ref MeuApiGatewayCentral
                         Path: /produtos/{proxy+}
+                        Method: ANY
+                ApiRootEvent:
+                    Type: Api
+                    Properties:
+                        RestApiId: !Ref MeuApiGatewayCentral
+                        Path: /produtos
                         Method: ANY
 
     AdminSeculosApiUsuariosFunction:
@@ -40,10 +46,16 @@ Resources:
             Timeout: 30
             Events:
                 ApiEvent:
-                    Type: HttpApi
+                    Type: Api
                     Properties:
-                        ApiId: !Ref MeuApiGatewayCentral
+                        RestApiId: !Ref MeuApiGatewayCentral
                         Path: /clientes/{proxy+}
+                        Method: ANY
+                ApiRootEvent:
+                    Type: Api
+                    Properties:
+                        RestApiId: !Ref MeuApiGatewayCentral
+                        Path: /clientes
                         Method: ANY
 
     AdminSeculosApiOutrosFunction:
@@ -56,8 +68,14 @@ Resources:
             Timeout: 30
             Events:
                 ApiEvent:
-                    Type: HttpApi
+                    Type: Api
                     Properties:
-                        ApiId: !Ref MeuApiGatewayCentral
+                        RestApiId: !Ref MeuApiGatewayCentral
                         Path: /{proxy+}
+                        Method: ANY
+                ApiRootEvent:
+                    Type: Api
+                    Properties:
+                        RestApiId: !Ref MeuApiGatewayCentral
+                        Path: /
                         Method: ANY

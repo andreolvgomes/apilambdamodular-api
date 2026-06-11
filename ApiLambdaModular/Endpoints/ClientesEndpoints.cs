@@ -3,6 +3,7 @@
 namespace ApiLambdaModular.Endpoints
 {
     [HttpGet("clientes")]
+    [Tags("teste")]
     public class GetAllClientesEndpoint : EndpointWithoutRequest
     {
         public async override Task<object?> ExecuteAsync(CancellationToken ct)
@@ -12,6 +13,7 @@ namespace ApiLambdaModular.Endpoints
     }
 
     [HttpGet("clientes/status")]
+    [Tags("teste")]
     public class StatusClientesEndpoint : EndpointWithoutRequest
     {
         public async override Task<object?> ExecuteAsync(CancellationToken ct)

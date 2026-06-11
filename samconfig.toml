@@ -10,3 +10,21 @@ s3_prefix = "apilambdamodular-api"
 region = "sa-east-1"
 confirm_changeset = false
 capabilities = "CAPABILITY_IAM"
+
+[sp.deploy.parameters]
+stack_name = "apilambdamodular-api"
+resolve_s3 = false
+s3_bucket = "apilambdamodular-api"
+s3_prefix = "apilambdamodular-api"
+region = "sa-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"
+
+[us.deploy.parameters]
+stack_name = "apilambdamodular-api-us"
+resolve_s3 = false
+s3_bucket = "apilambdamodular-api-us"
+s3_prefix = "apilambdamodular-api-us"
+region = "us-east-1"
+confirm_changeset = false
+capabilities = "CAPABILITY_IAM"

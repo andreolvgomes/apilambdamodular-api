@@ -20,9 +20,6 @@ O tráfego é distribuído pelo API Gateway seguindo a especificidade das rotas:
 ```mermaid
 graph TD
     Request([Requisição HTTP]) --> API[API Gateway Central]
-    API -->|/orcamentos/*| L1[Lambda Orçamentos]
-    API -->|/orcamentos/itens/*| L2[Lambda Itens]
-    API -->|/orcamentos/pagamentos/*| L3[Lambda Pagamentos]
 	API -->|/vendas/*| L1[Lambda Vendas]
     API -->|/vendas/itens/*| L2[Lambda Itens]
     API -->|/vendas/pagamentos/*| L3[Lambda Pagamentos]

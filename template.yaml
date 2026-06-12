@@ -3,18 +3,18 @@ Transform: AWS::Serverless-2016-10-31
 Globals:
     Function:
         Timeout: 30
-        MemorySize: 512
+        MemorySize: 1024
         Architectures: [arm64]
         Tracing: Active
         Runtime: dotnet8
 
 Resources:
-    MeuApiGatewayCentral:
+    ApiGatewayModularHttpApi:
         Type: AWS::Serverless::HttpApi
         Properties:
           StageName: Prod
 
-    AdminSeculosApiFunction:
+    OrcamentosApiLambdaModularFunction:
         Type: AWS::Serverless::Function
         Properties:
             Runtime: dotnet8
@@ -26,11 +26,11 @@ Resources:
                 ApiEvent:
                     Type: HttpApi
                     Properties:
-                        ApiId: !Ref MeuApiGatewayCentral
-                        Path: /produtos/{proxy+}
+                        ApiId: !Ref ApiGatewayModularHttpApi
+                        Path: /orcamentos/{proxy+}
                         Method: ANY
 
-    AdminSeculosApiUsuariosFunction:
+    VendasApiLambdaModularFunction:
         Type: AWS::Serverless::Function
         Properties:
             Runtime: dotnet8
@@ -42,11 +42,27 @@ Resources:
                 ApiEvent:
                     Type: HttpApi
                     Properties:
-                        ApiId: !Ref MeuApiGatewayCentral
+                        ApiId: !Ref ApiGatewayModularHttpApi
+                        Path: /vendas/{proxy+}
+                        Method: ANY
+
+    ClientesApiLambdaModularFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            Runtime: dotnet8
+            CodeUri: ./ApiLambdaModular/
+            Handler: ApiLambdaModular
+            MemorySize: 1024
+            Timeout: 30
+            Events:
+                ApiEvent:
+                    Type: HttpApi
+                    Properties:
+                        ApiId: !Ref ApiGatewayModularHttpApi
                         Path: /clientes/{proxy+}
                         Method: ANY
 
-    AdminSeculosApiOutrosFunction:
+    ProdutosApiLambdaModularFunction:
         Type: AWS::Serverless::Function
         Properties:
             Runtime: dotnet8
@@ -58,6 +74,22 @@ Resources:
                 ApiEvent:
                     Type: HttpApi
                     Properties:
-                        ApiId: !Ref MeuApiGatewayCentral
+                        ApiId: !Ref ApiGatewayModularHttpApi
+                        Path: /produtos/{proxy+}
+                        Method: ANY
+
+    ProxyApiLambdaModularFunction:
+        Type: AWS::Serverless::Function
+        Properties:
+            Runtime: dotnet8
+            CodeUri: ./ApiLambdaModular/
+            Handler: ApiLambdaModular
+            MemorySize: 1024
+            Timeout: 30
+            Events:
+                ApiEvent:
+                    Type: HttpApi
+                    Properties:
+                        ApiId: !Ref ApiGatewayModularHttpApi
                         Path: /{proxy+}
                         Method: ANY

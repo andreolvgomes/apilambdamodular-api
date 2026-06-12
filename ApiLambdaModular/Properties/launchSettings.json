@@ -1,5 +1,13 @@
 {
   "profiles": {
+    "ApiLambdaModular": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:44316;http://localhost:44317"
+    },
     "Mock Lambda Test Tool": {
       "commandName": "Executable",
       "executablePath": "%USERPROFILE%\\.dotnet\\tools\\dotnet-lambda-test-tool-8.0.exe",

@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
+
 Globals:
     Function:
         Timeout: 30
@@ -20,8 +21,9 @@ Resources:
             Runtime: dotnet8
             CodeUri: ./ApiLambdaModular/
             Handler: ApiLambdaModular
-            MemorySize: 1024
-            Timeout: 30
+            Environment:
+                Variables:
+                    LAMBDA_NAME: "OrcamentosApiLambdaModularFunction"
             Events:
                 ApiEvent:
                     Type: HttpApi
@@ -36,8 +38,9 @@ Resources:
             Runtime: dotnet8
             CodeUri: ./ApiLambdaModular/
             Handler: ApiLambdaModular
-            MemorySize: 1024
-            Timeout: 30
+            Environment:
+                Variables:
+                    LAMBDA_NAME: "VendasApiLambdaModularFunction"
             Events:
                 ApiEvent:
                     Type: HttpApi
@@ -52,8 +55,9 @@ Resources:
             Runtime: dotnet8
             CodeUri: ./ApiLambdaModular/
             Handler: ApiLambdaModular
-            MemorySize: 1024
-            Timeout: 30
+            Environment:
+                Variables:
+                    LAMBDA_NAME: "ClientesApiLambdaModularFunction"
             Events:
                 ApiEvent:
                     Type: HttpApi
@@ -68,8 +72,9 @@ Resources:
             Runtime: dotnet8
             CodeUri: ./ApiLambdaModular/
             Handler: ApiLambdaModular
-            MemorySize: 1024
-            Timeout: 30
+            Environment:
+                Variables:
+                    LAMBDA_NAME: "ProdutosApiLambdaModularFunction"
             Events:
                 ApiEvent:
                     Type: HttpApi
@@ -84,8 +89,9 @@ Resources:
             Runtime: dotnet8
             CodeUri: ./ApiLambdaModular/
             Handler: ApiLambdaModular
-            MemorySize: 1024
-            Timeout: 30
+            Environment:
+                Variables:
+                    LAMBDA_NAME: "ProxyApiLambdaModularFunction"
             Events:
                 ApiEvent:
                     Type: HttpApi
